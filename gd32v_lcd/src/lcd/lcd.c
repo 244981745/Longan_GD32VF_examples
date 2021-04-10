@@ -325,7 +325,8 @@ void Lcd_Init(void)
 	LCD_WR_DATA8(0x10);
 
 	LCD_WR_REG(0x3A);	// define the format of RGB picture data
-	LCD_WR_DATA8(0x05);	// 16-bit/pixel
+	//LCD_WR_DATA8(0x05);	// 16-bit/pixel
+	LCD_WR_DATA8(0x06);	// 18-bit/pixel
 
 	LCD_WR_REG(0x36);
 	if(USE_HORIZONTAL==0)LCD_WR_DATA8(0x08);
@@ -377,11 +378,11 @@ void LCD_ShowChinese(u16 x,u16 y,u8 index,u8 size,u16 color)
 		{
 		 	if((*temp&(1<<i))!=0)//从数据的低位开始读
 			{
-				LCD_WR_DATA(color);//点亮
+				LCD_WR_DATA(color);//on
 			}
 			else
 			{
-				LCD_WR_DATA(BACK_COLOR);//不点亮
+				LCD_WR_DATA(BACK_COLOR);//off
 			}
 		}
 		temp++;
